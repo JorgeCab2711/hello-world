@@ -1,0 +1,90 @@
+#Jorge Caballeros Pérez
+#carné 20009
+#4/06/2020
+#Programa de Identificación de ADN complementario, ARNm y Cadena de amino ácidos
+#************************************************************************************************************************************************************************************************************************************************fro
+
+def menu_ADN ():
+    print("")
+    print("")
+    print("***************Menú*********************")
+    print("1. Transcripción a ADN complementario.")
+    print("2. Transcripción a ARN mensajero. ")
+    print("3. Terminar el programa. ")
+    print("****************************************")
+    print("")
+    print("")
+menu_ADN()
+
+#inicio de codigo con condicionales de menú
+opcion = None
+deseo2= None
+base1= None
+deseo= None
+while opcion == None:
+    try:
+        opciones = int(input("Ingrese la alguna de las opciones del menú:   ")) 
+    except ValueError:
+        print("La opción ingresada es incorrecta...")
+        
+    if opciones == 3:
+        print("Se se ha terminado el programa...")
+        break    
+#  Las bases son: A => T ; T => A ; C=>G ; G=>C
+    if opciones == 1 or deseo2=="si":
+        print ("******************Transcripción a ADN complememtario**************************")
+        try:
+            base1= input("Ingrese el las bases de la cadena de ADN:  ").upper()
+            base1= base1.replace(" ","")
+            if not base1.isalpha():
+                base1 = ValueError
+            if base1== ValueError:
+                menu_ADN()
+                print("Las bases no pueden llevar números...")
+                
+            else:
+                base1 = base1.replace("T","Q")#Q= T Se reemplaza T por Q para luego reemplazar Q por A
+                base1 = base1.replace("A","T")
+                base1 = base1.replace("G","H")#H=G se reemplaza G por H para luego reemplazar H por C
+                base1 = base1.replace("C","G")
+                """Se vuelven a trascribir las bases"""
+                base1 = base1.replace("Q", "A")
+                base1 = base1.replace("H","C")
+                print("Su ADN complementario es: ", base1 )
+                print("********************************************************************************")
+                print("")
+                print("")
+                deseo = input("¿Desea transcribir el una linea de ADN a ARN?").lower()
+                if deseo== "no":
+                    print("Vuelva pronto...")
+                    break
+        except ValueError:
+            print("Las bases no pueden contener números...")
+            
+            
+    if opciones == 2 or deseo == "si":
+        print("*******************Transcripción a ARN mensajero********************************")
+        try: 
+            base2 = input("Ingrese el las bases de la cadena de ADN:  ").upper()
+            base2= base2.replace(" ","")
+            if not base2.isalpha():
+                base1 = ValueError
+            if base1== ValueError:
+                menu_ADN()
+                print("Las bases no pueden llevar números...")
+            else:
+                base2 = base2.replace("T","Q")#Q= T Se reemplaza T por Q para luego reemplazar Q por A
+                base2 = base2.replace("A","U")
+                base2 = base2.replace("G","H")#H=G se reemplaza G por H para luego reemplazar H por C
+                base2 = base2.replace("C","G")
+                """Se vuelven a trascribir las bases"""
+                base2 = base2.replace("Q", "A")
+                base2 = base2.replace("H","C")
+                print("Su ARN mensajero es: ", base2 )
+                if base1 != None:
+                    deseo2=input("¿Desea obtener el ADN complementario?:   ").lower()
+                if deseo2 == "no":
+                    print("********************************************************************************")
+                    break
+        except ValueError:
+            print("Las bases no pueden contener números...")
